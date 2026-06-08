@@ -1,0 +1,22 @@
+import Link from "next/link";
+
+export default function Navbar() {
+  return (
+    <nav className="border-b border-gray-200 px-8 py-4 flex items-center justify-between">
+      <Link href="/" className="font-semibold text-gray-900 tracking-tight">
+        VentureCheck
+      </Link>
+      <div className="flex gap-6 text-sm text-gray-600">
+        <Link href="/" className="hover:text-gray-900 transition-colors">
+          Home
+        </Link>
+        <Link href="/core" className="hover:text-gray-900 transition-colors">
+          Core
+        </Link>
+        <Link href="/docs" className="hover:text-gray-900 transition-colors">
+          Docs
+        </Link>
+      </div>
+    </nav>
+  );
+}
