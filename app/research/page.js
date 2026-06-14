@@ -60,7 +60,11 @@ export default function ResearchPage() {
       setSaveError('Error al guardar: ' + error.message);
     } else {
       setSaved(true);
-      setTimeout(() => loadRecent(), 800);
+      // Optimistic update — show entry immediately without waiting for Supabase SELECT
+      const newEntry = { id: Date.now(), idea, created_at: new Date().toISOString() };
+      setRecent(prev => [newEntry, ...prev].slice(0, 3));
+      // Also try to reload from Supabase in the background
+      setTimeout(() => loadRecent(), 1500);
     }
   }
 
