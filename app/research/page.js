@@ -20,11 +20,12 @@ export default function ResearchPage() {
   }, []);
 
   async function loadRecent() {
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from('research_outputs')
       .select('id, idea, created_at')
       .order('created_at', { ascending: false })
       .limit(3);
+    if (error) console.error('loadRecent error:', error);
     if (data) setRecent(data);
   }
 
@@ -59,7 +60,7 @@ export default function ResearchPage() {
       setSaveError('Error al guardar: ' + error.message);
     } else {
       setSaved(true);
-      loadRecent();
+      setTimeout(() => loadRecent(), 800);
     }
   }
 
