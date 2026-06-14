@@ -5,7 +5,7 @@ export default function Docs() {
         Documentation
       </h1>
       <p className="text-gray-500 mb-12">
-        Coming soon. This page will document prompts, decisions, and architecture notes for each week.
+        Prompts, decisions, and architecture notes for each week of the build.
       </p>
 
       <h2 className="text-sm font-semibold uppercase tracking-widest text-gray-400 mb-4">
@@ -31,6 +31,39 @@ export default function Docs() {
           <span className="font-semibold">Database:</span> Analyses are saved to the{" "}
           <code className="bg-gray-200 px-1 rounded">core_outputs</code> table in Supabase with
           columns: id, idea, analysis, recommendation, confidence, created_at.
+        </p>
+      </div>
+
+      <h2 className="text-sm font-semibold uppercase tracking-widest text-gray-400 mt-12 mb-4">
+        Week 2 — Research Agent Logic
+      </h2>
+      <div className="bg-gray-50 rounded-lg p-6 text-sm text-gray-700 leading-relaxed space-y-3">
+        <p>
+          <span className="font-semibold">Research approach:</span> The /research page uses a
+          category detection function that reads keywords in the idea text and selects a matching
+          template pool. Each pool contains 5 global benchmark companies, a Mexico market context
+          paragraph, 8 competitors/substitutes, and 5 categorized risks. Output is structured and
+          fully simulated — no external APIs.
+        </p>
+        <p>
+          <span className="font-semibold">Categories supported:</span> fashion, food, tech, sports,
+          education, service, and general (fallback). Category is detected automatically from the
+          idea text using keyword matching.
+        </p>
+        <p>
+          <span className="font-semibold">Competitor filter:</span> The competitor table filters in
+          real time using React state on the name, type, and market columns. No external library — just
+          a controlled input and Array.filter().
+        </p>
+        <p>
+          <span className="font-semibold">Simulated / Demo badge:</span> Same principle as Week 1 — all
+          generated outputs display a visible badge so the output is never misleading.
+        </p>
+        <p>
+          <span className="font-semibold">Database:</span> Research sessions are saved to the{" "}
+          <code className="bg-gray-200 px-1 rounded">research_outputs</code> table in Supabase with
+          columns: id, idea, global_examples, mexico_context, competitors, risks, recommendation, created_at.
+          JSON arrays are stored as stringified text.
         </p>
       </div>
     </div>

@@ -13,6 +13,9 @@ export default function Navbar() {
         <Link href="/core" className="hover:text-gray-900 transition-colors">
           Core
         </Link>
+        <Link href="/research" className="hover:text-gray-900 transition-colors">
+          Research
+        </Link>
         <Link href="/docs" className="hover:text-gray-900 transition-colors">
           Docs
         </Link>
