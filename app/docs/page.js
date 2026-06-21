@@ -66,6 +66,40 @@ export default function Docs() {
           JSON arrays are stored as stringified text.
         </p>
       </div>
+      <h2 className="text-sm font-semibold uppercase tracking-widest text-gray-400 mt-12 mb-4">
+        Week 3 — Product Architecture + Pricing Simulator
+      </h2>
+      <div className="bg-gray-50 rounded-lg p-6 text-sm text-gray-700 leading-relaxed space-y-3">
+        <p>
+          <span className="font-semibold">Product page (/product):</span> Static server component displaying the
+          feature map organized by tier (Free, Premium, Partner) and the two customer segments (End Users and
+          Pharmaceutical Partners). No API calls or state — all data is defined as constants in the file.
+        </p>
+        <p>
+          <span className="font-semibold">Pricing page (/pricing):</span> Client component with a revenue
+          simulator. Three scenario presets (Pessimistic, Base, Optimistic) populate the calculator inputs:
+          Monthly Active Users, Premium Conversion Rate, and Partner Accounts. Revenue is calculated in real time
+          using JavaScript — no external API required.
+        </p>
+        <p>
+          <span className="font-semibold">Revenue formula:</span>{" "}
+          <code className="bg-gray-200 px-1 rounded">
+            Monthly = (MAU × conversionRate × $49) + (partners × $2,500)
+          </code>
+          . Annual = Monthly × 12.
+        </p>
+        <p>
+          <span className="font-semibold">Scenario toggle:</span> Clicking Pessimistic / Base / Optimistic
+          updates all three inputs at once using React state. The user can also edit inputs manually after
+          selecting a scenario.
+        </p>
+        <p>
+          <span className="font-semibold">Database:</span> Saved scenarios go to the{" "}
+          <code className="bg-gray-200 px-1 rounded">pricing_scenarios</code> table in Supabase with columns:
+          id, scenario_name, mau, premium_rate, premium_users, partner_accounts, premium_revenue,
+          partner_revenue, monthly_revenue, annual_revenue, created_at.
+        </p>
+      </div>
     </div>
   );
 }
