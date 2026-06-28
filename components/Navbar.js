@@ -22,6 +22,12 @@ export default function Navbar() {
         <Link href="/pricing" className="hover:text-gray-900 transition-colors">
           Pricing
         </Link>
+        <Link href="/marketing" className="hover:text-gray-900 transition-colors">
+          Marketing
+        </Link>
+        <Link href="/chat" className="hover:text-gray-900 transition-colors">
+          Chat
+        </Link>
         <Link href="/docs" className="hover:text-gray-900 transition-colors">
           Docs
         </Link>

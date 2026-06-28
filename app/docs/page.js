@@ -100,6 +100,74 @@ export default function Docs() {
           partner_revenue, monthly_revenue, annual_revenue, created_at.
         </p>
       </div>
+
+      <h2 className="text-sm font-semibold uppercase tracking-widest text-gray-400 mt-12 mb-4">
+        Week 4 — Marketing Engine + Content System
+      </h2>
+      <div className="bg-gray-50 rounded-lg p-6 text-sm text-gray-700 leading-relaxed space-y-3">
+        <p>
+          <span className="font-semibold">Homepage upgrade:</span> The root page (/) was upgraded from a generic
+          roadmap to a real product landing page with hero copy, stat bar, feature grid linking to all weekly
+          pages, and a 3-step explainer for how FarmaCompara works.
+        </p>
+        <p>
+          <span className="font-semibold">Marketing page (/marketing):</span> Client component with five
+          sections — Brand System (name, tagline, color palette, voice), Target Persona (María G., 38, CDMX),
+          A/B Headline Test (two copy variants with vote tracking), 10 Social Posts with Copy and Save buttons,
+          3 Video Scripts (expandable cards), and a 14-Day Campaign Calendar.
+        </p>
+        <p>
+          <span className="font-semibold">A/B test logic:</span> User clicks either Headline A or B to vote.
+          The winner is highlighted and can be saved to Supabase. This tests loss-aversion framing
+          ("Stop Overpaying") vs. benefit framing ("Find the Cheapest Pharmacy Near You").
+        </p>
+        <p>
+          <span className="font-semibold">Copy button:</span> Uses{" "}
+          <code className="bg-gray-200 px-1 rounded">navigator.clipboard.writeText()</code> to copy post or
+          script text to clipboard. Button shows "✓ Copied" confirmation for 2 seconds.
+        </p>
+        <p>
+          <span className="font-semibold">Database:</span> Saved assets go to the{" "}
+          <code className="bg-gray-200 px-1 rounded">marketing_assets</code> table in Supabase with columns:
+          id, asset_type (social_post / video_script / campaign_calendar / headline_ab), title, content, created_at.
+        </p>
+      </div>
+
+      <h2 className="text-sm font-semibold uppercase tracking-widest text-gray-400 mt-12 mb-4">
+        Week 5 — Public Chatbot / Guided Assistant
+      </h2>
+      <div className="bg-gray-50 rounded-lg p-6 text-sm text-gray-700 leading-relaxed space-y-3">
+        <p>
+          <span className="font-semibold">Chat page (/chat):</span> Client component with a two-phase
+          interaction: a 3-question intake flow (medication, city, preference), then a free-text chat window
+          with simulated pharmacy price comparison responses.
+        </p>
+        <p>
+          <span className="font-semibold">Intake flow:</span> Three sequential questions collected before
+          opening the chat. The third question uses option buttons instead of free text to enforce valid input
+          for the preference field.
+        </p>
+        <p>
+          <span className="font-semibold">Response logic:</span> Keyword matching determines response type.
+          Medical advice patterns (dosage, side effects, interactions, prescriptions) trigger the guardrail
+          response. Price or search intent keywords return a simulated pharmacy result list sorted by the
+          user's stated preference.
+        </p>
+        <p>
+          <span className="font-semibold">Guardrail:</span> Regex patterns detect medical advice requests and
+          return a fixed safety message: "I can only help with price comparisons — not medical advice." All
+          outputs carry a visible "Simulated AI — not real medical advice" badge.
+        </p>
+        <p>
+          <span className="font-semibold">Feedback:</span> Each assistant message has thumbs up / thumbs down
+          buttons tracked in React state. Session summary shows the total helpful / not helpful count.
+        </p>
+        <p>
+          <span className="font-semibold">Database:</span> Saved sessions go to the{" "}
+          <code className="bg-gray-200 px-1 rounded">chat_sessions</code> table in Supabase with columns:
+          id, medication, city, preference, messages (JSON string), thumbs_up (int), thumbs_down (int), created_at.
+        </p>
+      </div>
     </div>
   );
 }
